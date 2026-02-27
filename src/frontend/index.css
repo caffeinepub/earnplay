@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== FONTS ===== */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* EarnPlay – Saffron × Navy × Gold */
+    /* Background: deep navy */
+    --background: 0.12 0.04 264;
+    --foreground: 0.97 0.01 90;
+
+    /* Card: slightly lighter navy */
+    --card: 0.16 0.05 264;
+    --card-foreground: 0.97 0.01 90;
+
+    /* Popover */
+    --popover: 0.18 0.06 264;
+    --popover-foreground: 0.97 0.01 90;
+
+    /* Primary: saffron orange */
+    --primary: 0.72 0.19 52;
+    --primary-foreground: 0.10 0.02 264;
+
+    /* Secondary: gold */
+    --secondary: 0.82 0.18 85;
+    --secondary-foreground: 0.10 0.02 264;
+
+    /* Muted */
+    --muted: 0.20 0.04 264;
+    --muted-foreground: 0.65 0.04 264;
+
+    /* Accent: bright saffron */
+    --accent: 0.76 0.20 52;
+    --accent-foreground: 0.10 0.02 264;
+
+    /* Destructive */
+    --destructive: 0.62 0.23 27;
+    --destructive-foreground: 0.98 0.01 90;
+
+    /* Border */
+    --border: 0.28 0.06 264;
+    --input: 0.22 0.05 264;
+    --ring: 0.72 0.19 52;
+
+    /* Charts */
+    --chart-1: 0.72 0.19 52;
+    --chart-2: 0.82 0.18 85;
+    --chart-3: 0.58 0.18 264;
+    --chart-4: 0.65 0.22 142;
+    --chart-5: 0.62 0.23 27;
+
+    /* Game-specific tokens */
+    --saffron: 0.72 0.19 52;
+    --gold: 0.82 0.18 85;
+    --navy: 0.12 0.04 264;
+    --navy-light: 0.18 0.06 264;
+    --correct: 0.68 0.20 142;
+    --wrong: 0.62 0.23 27;
+    --rupee-glow: 0.82 0.18 85;
+
+    /* Sidebar */
+    --sidebar: 0.14 0.05 264;
+    --sidebar-foreground: 0.97 0.01 90;
+    --sidebar-primary: 0.72 0.19 52;
+    --sidebar-primary-foreground: 0.10 0.02 264;
+    --sidebar-accent: 0.20 0.05 264;
+    --sidebar-accent-foreground: 0.97 0.01 90;
+    --sidebar-border: 0.28 0.06 264;
+    --sidebar-ring: 0.72 0.19 52;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Outfit", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+/* ===== CUSTOM UTILITIES ===== */
+@layer utilities {
+  .text-saffron { color: oklch(var(--saffron)); }
+  .text-gold { color: oklch(var(--gold)); }
+  .bg-saffron { background-color: oklch(var(--saffron)); }
+  .bg-gold { background-color: oklch(var(--gold)); }
+  .bg-navy { background-color: oklch(var(--navy)); }
+  .bg-navy-light { background-color: oklch(var(--navy-light)); }
+  .border-saffron { border-color: oklch(var(--saffron)); }
+  .border-gold { border-color: oklch(var(--gold)); }
+
+  .correct-glow {
+    box-shadow: 0 0 20px oklch(var(--correct) / 0.5), 0 0 40px oklch(var(--correct) / 0.2);
+    border-color: oklch(var(--correct));
+    background-color: oklch(var(--correct) / 0.15);
+  }
+
+  .wrong-glow {
+    box-shadow: 0 0 20px oklch(var(--wrong) / 0.5), 0 0 40px oklch(var(--wrong) / 0.2);
+    border-color: oklch(var(--wrong));
+    background-color: oklch(var(--wrong) / 0.15);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 30px oklch(var(--gold) / 0.4), 0 0 60px oklch(var(--gold) / 0.15);
+  }
+
+  .saffron-glow {
+    box-shadow: 0 0 20px oklch(var(--saffron) / 0.4), 0 0 40px oklch(var(--saffron) / 0.15);
+  }
+
+  .game-card {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--card)) 0%,
+      oklch(var(--navy-light)) 100%
+    );
+    border: 1px solid oklch(var(--border));
+  }
+
+  .festive-bg {
+    background: radial-gradient(
+      ellipse at 20% 20%,
+      oklch(var(--saffron) / 0.12) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 80%,
+      oklch(var(--gold) / 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      oklch(0.15 0.05 264) 0%,
+      oklch(var(--navy)) 100%
+    );
+    min-height: 100vh;
+  }
+
+  .rupee-shimmer {
+    background: linear-gradient(
+      90deg,
+      oklch(var(--gold)),
+      oklch(0.95 0.10 85),
+      oklch(var(--gold))
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  .answer-option {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .answer-option:hover:not(:disabled) {
+    border-color: oklch(var(--saffron));
+    background-color: oklch(var(--saffron) / 0.1);
+    transform: translateX(4px);
+  }
+
+  .rank-1 { color: oklch(var(--gold)); }
+  .rank-2 { color: oklch(0.75 0.05 264); }
+  .rank-3 { color: oklch(0.72 0.19 52); }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes coin-rain {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(40px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 2s ease-in-out infinite;
+}
+
+.animate-coin-rain {
+  animation: coin-rain 1.2s ease-out forwards;
+}
+
+.animate-countdown-pulse {
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+/* Timer critical state */
+.timer-critical {
+  color: oklch(var(--wrong));
+  animation: countdown-pulse 0.5s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--navy));
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--saffron) / 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--saffron) / 0.7);
+}
